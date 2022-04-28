@@ -1,0 +1,105 @@
+import React, { useState, useEffect } from "react";
+import "./catPage.styles.scss";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
+import TheComponent from "../components/thecomponent";
+import Footer from "../components/footer";
+
+const CatPage = () => {
+  const location = useLocation();
+  const [cat, setCat] = useState([]);
+  // get 8 cat image url of the same id from the api and set them to the state
+
+  console.log("location data \n", location.state);
+  useEffect(() => {
+    const temp = [];
+    const fetchData = async () => {
+      const result = await axios(
+        `https://api.thecatapi.com/v1/images/search?&limit=8&breed_ids=${location.state.id}`
+      );
+      result.data.forEach((element) => {
+        temp.push(element.url);
+      });
+      setCat(temp);
+    };
+    fetchData();
+  }, [location.state.id]);
+  // console.log(cat);
+
+  return (
+    <>
+      <div className="catPage">
+        <div className="catPage-left">
+          <img id="catimage" src={location.state.image.url} alt="catimage" />
+        </div>
+        <div className="catPage-right">
+          <h2 className="catName">{location.state.name}</h2>
+          <div className="catDescription">{location.state.description}</div>
+          <div className="catTemperament boldblacktext">
+            Temperament:
+            <span className="blacktext">{location.state.temperament}</span>
+          </div>
+          <div className="catOrigin boldblacktext">
+            Origin: <span className="blacktext">{location.state.origin}</span>
+          </div>
+          <div className="catLifeSpan boldblacktext">
+            Life span:
+            <span className="blacktext">{location.state.life_span} years</span>
+          </div>
+          <div className="nexttoeachother">
+            <p className="boldblacktext">Adaptability: </p>
+            <TheComponent level={location.state.adaptability} />
+          </div>
+          <div className="nexttoeachother">
+            <p className="boldblacktext">Affection level: </p>
+            <TheComponent level={location.state.affection_level} />
+          </div>
+          <div className="nexttoeachother">
+            <p className="boldblacktext">Child friendly: </p>
+            <TheComponent level={location.state.child_friendly} />
+          </div>
+          <div className="nexttoeachother">
+            <p className="boldblacktext">Grooming: </p>
+            <TheComponent level={location.state.grooming} />
+          </div>
+          <div className="nexttoeachother">
+            <p className="boldblacktext">Intelligence: </p>
+            <TheComponent level={location.state.intelligence} />
+          </div>
+          <div className="nexttoeachother">
+            <p className="boldblacktext">Health issues: </p>
+            <TheComponent level={location.state.health_issues} />
+          </div>
+          <div className="nexttoeachother">
+            <p className="boldblacktext">Social needs: </p>
+            <TheComponent level={location.state.social_needs} />
+          </div>
+          <div className="nexttoeachother">
+            <p className="boldblacktext">Stranger Friendly</p>
+            <TheComponent level={location.state.stranger_friendly} />
+          </div>
+        </div>
+      </div>
+      <div className="catPage-bottom">
+        <p className="catName">Other Photos</p>
+        <div className="cat-grid">
+          {cat.map((element, index) => {
+            return (
+              <div>
+                <img
+                  key={index++}
+                  className="cat-grid-item"
+                  src={element}
+                  alt="cat"
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
+};
+
+export default CatPage;

@@ -1,0 +1,63 @@
+import React from "react";
+import "./mostSearched.styles.scss";
+import Footer from "../footer/footer.component";
+
+import { useLocation } from "react-router-dom";
+const MostSearched = () => {
+  const location = useLocation();
+
+  let top10 = [
+    "raga",
+    "mcoo",
+    "ragd",
+    "lihu",
+    "beng",
+    "asho",
+    "abys",
+    "siam",
+    "sfol",
+    "tonk",
+  ];
+  let mostSearchedCats = [];
+  if (location.state) {
+    for (let i = 0; i < top10.length; i++) {
+      location.state.forEach((cat) => {
+        if (cat.id === top10[i]) {
+          mostSearchedCats.push(cat);
+        }
+      });
+    }
+  }
+
+  return (
+    <div className="mostSearched">
+      <div className="mostSearched-container">
+        <h1 className="mostSearched-title">Top 10 Most Searched Breeds</h1>
+        <div className="mostSearched-list">
+          {mostSearchedCats.map((cat, index) => {
+            return (
+              <div className="mostSearched-item" key={cat.id}>
+                <img
+                  className="mostSearched-image"
+                  src={cat.image.url}
+                  alt={cat.name}
+                />
+                <div className={"mostSearched-text"}>
+                  <div className="mostSearched-item-name">
+                    {index + 1}. {cat.name}
+                  </div>
+                  <div className="mostSearched-item-description">
+                    {cat.description}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <Footer />
+    </div>
+  );
+};
+
+export default MostSearched;
