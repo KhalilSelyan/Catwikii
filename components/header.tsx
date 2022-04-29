@@ -1,9 +1,15 @@
 import React from "react";
 const Header = () => {
   return (
-    <header className="px-[18px] py-6">
+    <header
+      onClick={() => {
+        window.location.href = "/";
+      }}
+      className="px-[18px] py-6 ml-4 lg:ml-80 3xl:ml-[60rem] cursor-pointer"
+    >
       <div>
         <svg
+          className="sm:w-24 lg:w-32"
           width="128"
           height="43"
           viewBox="0 0 128 43"

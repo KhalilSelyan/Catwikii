@@ -4,10 +4,10 @@ import logo from "../assets/CatwikiLogo.svg";
 
 const Footer = () => {
   return (
-    <div className="bg-black rounded-t-[42px] mx-4 pt-2">
-      <div>
+    <div className="bg-black rounded-t-[42px] mx-4 pt-2 lg:mx-72 3xl:mx-[56rem]">
+      <div className="lg:flex lg:flex-row lg:items-center lg:justify-between">
         <svg
-          className="p-1 mx-1 my-3"
+          className="p-1 mx-1 my-3 lg:ml-6 "
           width="128"
           height="43"
           viewBox="0 0 128 43"
@@ -43,10 +43,10 @@ const Footer = () => {
             fill="#fff"
           />
         </svg>
+        <p className="text-white text-sm lg:p-2 pb-5 p-1 ml-1">
+          © Created by KhalilSelyan - dev Challenge.io 2021
+        </p>
       </div>
-      <p className="text-white p-1 ml-2 pb-5 text-sm">
-        © Created by KhalilSelyan - dev Challenge.io 2021
-      </p>
     </div>
   );
 };

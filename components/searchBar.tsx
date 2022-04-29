@@ -1,14 +1,14 @@
-import Image from "next/image";
 import React from "react";
-
 const SearchBar = ({ setSearch, setIsOpen }) => {
   return (
-    <div className="flex items-center bg-white rounded-[59px] p-2 h-8 w-24 border border-[#bdbdbdbd]">
+    <div className="flex items-center bg-white rounded-[59px] p-2 h-8 w-24 lg:w-96 lg:h-16 border border-[#bdbdbdbd]">
       <input
-        className="w-full h-full border-none bg-transparent focus:outline-none placeholder:text-[#291507]"
+        className="w-full h-full border-none bg-transparent focus:outline-none placeholder:text-[#291507] px-4"
         type="text"
         placeholder="Search"
-        onFocus={() => setIsOpen(true)}
+        onFocus={() => {
+          setIsOpen(true);
+        }}
         // onBlur={() => setIsOpen(false)}
         onChange={(e) => {
           setSearch(e.target.value);

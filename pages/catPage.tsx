@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./catPage.styles.scss";
-import { useLocation } from "react-router-dom";
 import axios from "axios";
 import TheComponent from "../components/thecomponent";
 import Footer from "../components/footer";
 
 const CatPage = () => {
-  const location = useLocation();
   const [cat, setCat] = useState([]);
   // get 8 cat image url of the same id from the api and set them to the state
 
-  console.log("location data \n", location.state);
   useEffect(() => {
     const temp = [];
     const fetchData = async () => {
@@ -23,7 +20,7 @@ const CatPage = () => {
       setCat(temp);
     };
     fetchData();
-  }, [location.state.id]);
+  }, []);
   // console.log(cat);
 
   return (

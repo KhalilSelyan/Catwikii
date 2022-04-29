@@ -7,12 +7,12 @@ const TheComponent = ({ level }) => {
   const Colors = ["#544439", "#E0E0E0"];
 
   return (
-    <div className="TheComponent">
+    <div className="flex flex-row items-center">
       {Levels.map((kindex, index) => {
         return (
           <div
             key={index}
-            className="level"
+            className="mr-4 rounded-lg w-16 h-3"
             // change the color of the div based on the level if the level is greater than the index of the array  if the level is less than the index of the array then the color will be white
             style={{
               backgroundColor: index < level ? Colors[0] : Colors[1],

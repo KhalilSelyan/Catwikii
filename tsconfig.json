@@ -18,8 +18,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "pages/mostSearched",
-    "pages/catPage"
+    "pages/mostSearched.tsx",
+    "pages/catPage.tsx"
   ],
   "exclude": ["node_modules"]
 }
