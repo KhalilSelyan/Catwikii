@@ -42,7 +42,7 @@ const IndexPage = () => {
             src={heroImage2}
             alt="Hero Image"
           />
-          <div className="absolute top-5 left-7 lg:top-24 lg:left-96 3xl:left-[70rem]">
+          <div className="absolute top-5 left-7 lg:top-24 lg:left-96 3xl:left-[48rem] 4xl:left-[70rem]">
             <svg
               className="w-32 lg:w-52"
               viewBox="0 0 128 43"

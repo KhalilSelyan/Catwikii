@@ -5,7 +5,7 @@ const Header = () => {
       onClick={() => {
         window.location.href = "/";
       }}
-      className="px-[18px] py-6 ml-4 lg:ml-80 3xl:ml-[60rem] cursor-pointer"
+      className="flex justify-center mr-40 pt-4 lg:justify-start lg:ml-80 3xl:ml-[40rem] 4xl:ml-[64rem] cursor-pointer"
     >
       <div>
         <svg
