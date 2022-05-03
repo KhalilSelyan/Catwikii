@@ -1,6 +1,4 @@
 import React from "react";
-import logo from "../assets/CatwikiLogo.svg";
-// import "./footer.styles.scss";
 
 const Footer = () => {
   return (
