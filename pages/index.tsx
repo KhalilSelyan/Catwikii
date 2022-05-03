@@ -4,11 +4,14 @@ import SearchBar from "../components/searchBar";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import Link from "next/link";
 
 let breedList = [];
+
 axios.get("https://catwikiserver.herokuapp.com/").then((res) => {
   breedList = res.data;
 });
+
 const IndexPage = () => {
   const [search, setSearch] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -34,6 +37,7 @@ const IndexPage = () => {
         {/* Cat BG side */}
         <div className="flex flex-col items-center justify-center w-full">
           <Image
+            priority={true}
             className="rounded-t-[42px] -z-10"
             src={heroImage2}
             alt="Hero Image"
@@ -112,28 +116,37 @@ const IndexPage = () => {
                   {search === ""
                     ? breedList.map((cat) => {
                         return (
-                          <div
-                            className="flex w-full h-14 items-center hover:bg-gray-300 px-2 rounded-xl text-lg font-medium leading-[22px] cursor-pointer"
+                          <Link
                             key={cat.id}
-                            onClick={() => {
-                              // router.push(`cat/${cat.id}`, { state: cat });
-                              // router.push(`/cat/${cat.id}`);
+                            href={{
+                              pathname: `/catPage`,
+                              query: cat,
                             }}
+                            passHref={true}
+                            replace
+                            as={`/catPage/${cat.name}`}
                           >
-                            {cat.name}
-                          </div>
+                            <div className="flex w-full h-14 items-center hover:bg-gray-300 px-2 rounded-xl text-lg font-medium leading-[22px] cursor-pointer">
+                              {cat.name}
+                            </div>
+                          </Link>
                         );
                       })
                     : filteredCats.map((breed) => (
-                        <span
-                          className="flex w-full h-14 items-center hover:bg-gray-300 px-2 rounded-xl text-lg font-medium leading-[22px] cursor-pointer"
+                        <Link
                           key={breed.id}
-                          onClick={() => {
-                            // router.push(`cat/${breed.id}`, { state: breed });
+                          href={{
+                            pathname: `/catPage`,
+                            query: breed,
                           }}
+                          passHref={true}
+                          replace
+                          as={`/catPage/${breed.name}`}
                         >
-                          {breed.name}
-                        </span>
+                          <div className="flex w-full h-14 items-center hover:bg-gray-300 px-2 rounded-xl text-lg font-medium leading-[22px] cursor-pointer">
+                            {breed.name}
+                          </div>
+                        </Link>
                       ))}
                 </div>
               </div>
