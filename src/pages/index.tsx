@@ -7,7 +7,6 @@ import { top10Atom, breedListAtom } from "../atoms";
 import axios from "axios";
 import { useAtom } from "jotai";
 import type { Breed } from "../atoms";
-import { useRouter } from "next/router";
 import Link from "next/link";
 
 const Home: NextPage = () => {
