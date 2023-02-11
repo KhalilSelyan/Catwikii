@@ -1,16 +1,46 @@
-import { atomWithStorage, createJSONStorage } from "jotai/utils";
-import type { SyncStorage } from "jotai/vanilla/utils/atomWithStorage";
+import { atomWithStorage } from "jotai/utils";
 
-let seshStorage;
-if (typeof window !== "undefined") {
-  seshStorage = createJSONStorage(() => sessionStorage);
-}
-
-export const catImagesAtom = atomWithStorage<catImage[]>(
-  "session",
-  [],
-  seshStorage as SyncStorage<catImage[]>
-);
+export const breedListAtom = atomWithStorage<Breed[]>("breeds", []);
+export const catImagesAtom = atomWithStorage<catImage[]>("CatImages", []);
+export const catSpecificInfoAtom = atomWithStorage<Breed>("catSpecificInfo", {
+  adaptability: 0,
+  affection_level: 0,
+  alt_names: "",
+  cfa_url: "",
+  country_code: "",
+  country_codes: "",
+  description: "",
+  dog_friendly: 0,
+  child_friendly: 0,
+  energy_level: 0,
+  experimental: 0,
+  grooming: 0,
+  hairless: 0,
+  health_issues: 0,
+  hypoallergenic: 0,
+  id: "",
+  indoor: 0,
+  intelligence: 0,
+  lap: 0,
+  life_span: "",
+  name: "",
+  natural: 0,
+  origin: "",
+  rare: 0,
+  reference_image_id: "",
+  rex: 0,
+  shedding_level: 0,
+  short_legs: 0,
+  social_needs: 0,
+  stranger_friendly: 0,
+  suppressed_tail: 0,
+  temperament: "",
+  vcahospitals_url: "",
+  vetstreet_url: "",
+  vocalisation: 0,
+  weight: { imperial: "", metric: "" },
+  wikipedia_url: "",
+});
 
 export type catImage = {
   breeds: Breed[];
@@ -59,6 +89,3 @@ export type Breed = {
   weight: { imperial: string; metric: string };
   wikipedia_url: string;
 };
-
-export const breedListAtom = atomWithStorage<Breed[]>("breeds", []);
-export const top10Atom = atomWithStorage("top10", []);

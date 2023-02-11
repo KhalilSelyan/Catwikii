@@ -3,7 +3,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useMemo, useState } from "react";
 import SearchBar from "../components/searchbar";
-import { top10Atom, breedListAtom } from "../atoms";
+import { breedListAtom } from "../atoms";
 import axios from "axios";
 import { useAtom } from "jotai";
 import type { Breed } from "../atoms";
@@ -34,7 +34,6 @@ const Home: NextPage = () => {
     return cats;
   }, []);
 
-  const [top10, setTop10] = useAtom(top10Atom);
   const [breedList, setBreedList] = useAtom(breedListAtom);
   const [filteredCats, setFilteredCats] = useState<Breed[]>(breedList);
 

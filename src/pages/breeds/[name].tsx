@@ -3,14 +3,14 @@
 import axios from "axios";
 import { useAtom } from "jotai";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import type { Breed, catImage } from "../../atoms";
-import { catImagesAtom } from "../../atoms";
+import { catImagesAtom, catSpecificInfoAtom } from "../../atoms";
 import TheComponent from "../../components/thecomponent";
 
 const Cat = () => {
   const [catImages, setCatImages] = useAtom(catImagesAtom);
-  const [currentBreed, setCurrentBreed] = useState<Breed>();
+  const [currentBreed, setCurrentBreed] = useAtom(catSpecificInfoAtom);
   const router = useRouter();
   const { breed } = router.query;
 
@@ -109,7 +109,7 @@ const Cat = () => {
       <div className="mx-auto grid w-fit grid-cols-4 place-items-center gap-4 pb-4">
         {catImages.map((image, idx) => {
           // ignore the first image
-          if (idx === 1 || idx > 8) return null;
+          if (idx === 0 || idx > 8) return null;
           return (
             <img
               className="aspect-square w-44 rounded-lg object-cover"
